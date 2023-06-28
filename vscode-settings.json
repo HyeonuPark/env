@@ -1,0 +1,71 @@
+{
+    "mycustomfield.installed-extensions": [
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "Compulim.vscode-clock",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-preview-github-styles",
+        "marp-team.marp-vscode",
+        "svelte.svelte-vscode",
+        "esbenp.prettier-vscode",
+    ],
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.visible": false,
+    "files.autoSave": "onFocusChange",
+    "keyboard.dispatch": "keyCode",
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#ff0000",
+        "editor.selectionHighlightBackground": "#9a6300",
+        "editor.selectionBackground": "#849a00",
+        "statusBarItem.remoteBackground": "#003568",
+        "statusBar.background": "#000068",
+        "statusBarItem.hoverBackground": "#350068"
+    },
+    "files.trimTrailingWhitespace": true,
+    "editor.cursorWidth": 3,
+    "editor.fontWeight": "600",
+    "clock.dateFormat": "o-hh:MM TT",
+    "files.associations": {
+        "bashrc": "shellscript"
+    },
+    "search.showLineNumbers": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.wordWrapColumn": 100,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "[javascript][typescript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.maxTokenizationLineLength": 2500
+    },
+    "[svelte]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "explorer.sortOrder": "mixed",
+    "rust-analyzer.completion.autoimport.enable": false,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.server.extraEnv": {
+        "CARGO_TARGET_DIR": "target/ra",
+        "PKG_CONFIG": "/usr/local/bin/pkg-config"
+    },
+    "rust-analyzer.inlayHints.reborrowHints.enable": "never",
+    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+    "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "never",
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "rust-analyzer.check.command": "clippy",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.tree.indent": 16,
+    "svelte.enable-ts-plugin": true,
+    "workbench.list.horizontalScrolling": true,
+}
