@@ -80,9 +80,9 @@ alias gl="gla -n 100"; __git_complete gl _git_log
 
 # Cargo aliases
 
-alias ck='cargo check'
-alias cka='cargo check --all'
-alias ckp='cargo check --package'
+alias ck='cargo clippy'
+alias cka='cargo clippy --all'
+alias ckp='cargo clippy --package'
 
 alias ct='cargo test'
 alias cta='cargo test --all'
@@ -97,7 +97,7 @@ alias crb='cargo run --bin'
 
 # TODO: remove rg and exa deps on ad-hoc env, and remove bashism
 
-alias ls='exa --time-style=iso --git --git-ignore'
+alias ls='exa --time-style=iso --git'
 alias ll='ls -l'
 alias rmf='rm -rf'
 alias cpr='cp -r'
