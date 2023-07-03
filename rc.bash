@@ -17,29 +17,35 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # print backtrace msg on rust executable panic
 export RUST_BACKTRACE=1
 
-PATH="\
+export PATH="\
 :$HOME/bin\
 :$HOME/.local/bin\
+:/opt/homebrew/bin\
 :/usr/bin\
 :/usr/local/bin\
 :/usr/local/sbin\
+:/bin\
+:/sbin\
 :$PATH"
 
 # insert 3rd party .bashrc lines here
 source "$HOME/.cargo/env"
 
 # dedupe $PATH without changing order
-export PATH="$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!x[$0]++' | head -c -1)"
+export PATH="$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!x[$0]++')"
+export PATH="${PATH%?}"
 
 COMPLETION_DIR_CANDIDATES="
 /usr/local/etc/bash_completion.d
 /usr/share/bash-completion/completions
 /etc/bash_completion.d
+/opt/homebrew/etc/bash_completion.d
 "
 
 for COMPLETION_DIR in $COMPLETION_DIR_CANDIDATES; do
 	if [[ -d $COMPLETION_DIR ]]; then
 		source $COMPLETION_DIR/git 2> /dev/null
+		source $COMPLETION_DIR/git-completion.bash 2> /dev/null
 		break
 	fi
 done
@@ -92,6 +98,16 @@ alias cb='cargo build'
 alias cbb='cargo build --bin'
 alias cr='cargo run'
 alias crb='cargo run --bin'
+
+# K8s aliases
+
+alias k='kubectl'
+alias kx='kubectl exec -it'
+alias kp='kubectl cp'
+
+function ksh {
+	kubectl exec -it $1 -- /bin/bash
+}
 
 # Misc aliases
 
