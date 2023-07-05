@@ -17,9 +17,11 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # print backtrace msg on rust executable panic
 export RUST_BACKTRACE=1
 
+TOOLS_BIN=(~/tools/*/bin)
 export PATH="\
 :$HOME/bin\
 :$HOME/.local/bin\
+$(printf ":%s" "${TOOLS_BIN[@]}")\
 :/opt/homebrew/bin\
 :/usr/bin\
 :/usr/local/bin\
