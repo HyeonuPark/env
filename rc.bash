@@ -5,8 +5,12 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-PATH_COLOR=36
-export PS1="\[\e[$PATH_COLOR;1m\]\w\[\e[0m\]\$(date +%H%M%S)\[\e[32;1m\]\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)\[\e[33m\]\$ \[\e[0m\]"
+TERM_REDBACK="\[\e[1;37;41m\]"
+TERM_CYAN="\[\e[1;36m\]"
+TERM_LIME="\[\e[1;32m\]"
+TERM_YELLOW="\[\e[33m\]"
+TERM_RESET="\[\e[0m\]"
+export PS1="$TERM_REDBACK$ENVIRONMENT_TAG$TERM_RESET$TERM_CYAN\w$TERM_RESET\$(date +%H%M%S)$TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$ $TERM_RESET"
 
 export VISUAL='nano'
 export EDITOR='nano'
