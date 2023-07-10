@@ -1,3 +1,16 @@
+## Setup
+
+```bash
+cd ~
+echo `source $HOME/env/rc.bash' > .bashrc
+echo 'source $HOME/env/profile.bash' > .bash_profile
+cd ~/.cargo
+ln -s ~/env/cargo/config.toml config.toml
+cd $$VSCODE_SETTING_DIR
+ln -s ~/env/vscode/settings.json settings.json
+ln -s ~/env/vscode/keybindings.json keybindings.json
+```
+
 ## Done
 
 disk encryption
