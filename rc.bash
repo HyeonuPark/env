@@ -5,12 +5,31 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-TERM_REDBACK="\[\e[1;37;41m\]"
-TERM_CYAN="\[\e[1;36m\]"
-TERM_LIME="\[\e[1;32m\]"
-TERM_YELLOW="\[\e[33m\]"
-TERM_RESET="\[\e[0m\]"
-export PS1="$TERM_REDBACK$ENVIRONMENT_TAG$TERM_RESET$TERM_CYAN\w$TERM_RESET\$(date +%H%M%S)$TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$ $TERM_RESET"
+TERM_REDBACK="\e[1;37;41m"
+TERM_CYAN="\e[1;36m"
+TERM_LIME="\e[1;32m"
+TERM_YELLOW="\e[33m"
+TERM_RESET="\e[0m"
+
+export COMMAND_EXEC_TIME_STATE="${COMMAND_EXEC_TIME_STATE:-$(mktemp)}"
+function report-heavy-cmd {
+	local start="$(cat $COMMAND_EXEC_TIME_STATE)"
+	if [ -z $start ]; then
+		echo -e "$TERM_REDBACK$ENVIRONMENT_TAG$TERM_RESET"
+		return
+	fi
+	local elapsed="$((SECONDS - start))"
+	if [ $elapsed -gt 2 ]; then
+		echo ''
+		echo "It took $elapsed seconds to run previous command."
+		echo ''
+	fi
+	echo -n '' > "$COMMAND_EXEC_TIME_STATE"
+	echo -e "$TERM_REDBACK$ENVIRONMENT_TAG$TERM_RESET"
+}
+
+export PS0="\$(echo -n \$SECONDS > \$COMMAND_EXEC_TIME_STATE)"
+export PS1="\$(report-heavy-cmd)$TERM_CYAN\w$TERM_RESET $TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$ $TERM_RESET"
 
 export VISUAL='nano'
 export EDITOR='nano'

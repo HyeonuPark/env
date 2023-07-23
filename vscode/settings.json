@@ -68,4 +68,7 @@
     "workbench.tree.indent": 16,
     "svelte.enable-ts-plugin": true,
     "workbench.list.horizontalScrolling": true,
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "hidden",
+    "redhat.telemetry.enabled": true,
 }
