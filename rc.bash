@@ -21,7 +21,7 @@ function report-heavy-cmd {
 	local elapsed="$((SECONDS - start))"
 	if [ $elapsed -gt 2 ]; then
 		echo ''
-		echo "It took $elapsed seconds to run previous command."
+		echo "It took $(date -d@$elapsed -u +%H:%M:%S) to run previous command."
 		echo ''
 	fi
 	echo -n '' > "$COMMAND_EXEC_TIME_STATE"
