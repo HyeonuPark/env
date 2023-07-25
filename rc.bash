@@ -12,7 +12,7 @@ TERM_RESET="\[\e[0m\]"
 
 export COMMAND_EXEC_TIME_STATE="${COMMAND_EXEC_TIME_STATE:-$(mktemp)}"
 function report-heavy-cmd {
-	local prompt="\e[1;37;41m$ENVIRONMENT_TAG\e[0m";
+	local prompt="\033[1;37;41m$ENVIRONMENT_TAG\033[0m";
 	local start="$(cat $COMMAND_EXEC_TIME_STATE)"
 	if [ -z $start ]; then
 		echo -e "$prompt"
@@ -160,7 +160,7 @@ function mvf {
 
 	tmp_path="$(mktemp)"
 	mv $1 "$tmp_path"
-	rm -r $2
+	rm -rf $2
 	mkdir -p "$(dirname $2)"
 	mv "$tmp_path" $2
 }
