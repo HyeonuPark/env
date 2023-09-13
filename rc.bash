@@ -20,9 +20,9 @@ function report-heavy-cmd {
 	local elapsed="$((SECONDS - start))"
 	if [ $elapsed -gt 2 ]; then
 		if [[ "$OSTYPE" == "linux-gnu"* ]]
-		then DATESTR=$(date -d @$elapsed +%H:%M:%S)
-		elif [[ "$OSTYPE" == "darwin*" ]]
-		then DATESTR=$(date -r $elapsed +%H:%M:%S)
+		then DATESTR="$(date -ud @$elapsed +%H:%M:%S)"
+		elif [[ "$OSTYPE" == "darwin"* ]]
+		then DATESTR="$(date -ur $elapsed +%H:%M:%S)"
 		else DATESTR="$elapsed seconds"
 		fi
 		>&2 echo ''
