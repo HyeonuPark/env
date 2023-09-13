@@ -8,28 +8,32 @@ fi
 TERM_CYAN="\[\e[1;36m\]"
 TERM_LIME="\[\e[1;32m\]"
 TERM_YELLOW="\[\e[33m\]"
+TERM_RED_BACKGROUND="\[\e[1;37;41m\]"
 TERM_RESET="\[\e[0m\]"
 
 export COMMAND_EXEC_TIME_STATE="${COMMAND_EXEC_TIME_STATE:-$(mktemp)}"
 function report-heavy-cmd {
-	local prompt="\033[1;37;41m$ENVIRONMENT_TAG\033[0m";
 	local start="$(cat $COMMAND_EXEC_TIME_STATE)"
 	if [ -z $start ]; then
-		echo -e "$prompt"
 		return
 	fi
 	local elapsed="$((SECONDS - start))"
 	if [ $elapsed -gt 2 ]; then
-		echo ''
-		echo "It took $(date -d@$elapsed -u +%H:%M:%S) to run previous command."
-		echo ''
+		if [[ "$OSTYPE" == "linux-gnu"* ]]
+		then DATESTR=$(date -d @$elapsed +%H:%M:%S)
+		elif [[ "$OSTYPE" == "darwin*" ]]
+		then DATESTR=$(date -r $elapsed +%H:%M:%S)
+		else DATESTR="$elapsed seconds"
+		fi
+		>&2 echo ''
+		>&2 echo "It took $DATESTR to run previous command."
+		>&2 echo ''
 	fi
 	echo -n '' > "$COMMAND_EXEC_TIME_STATE"
-	echo -e "$prompt"
 }
 
 export PS0="\$(echo -n \$SECONDS > \$COMMAND_EXEC_TIME_STATE)"
-export PS1="\[\$(report-heavy-cmd)\]$TERM_CYAN\w $TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$ $TERM_RESET"
+export PS1="\$(report-heavy-cmd)$TERM_RED_BACKGROUND$ENVIRONMENT_TAG$TERM_RESET$TERM_CYAN\w $TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$$TERM_RESET "
 
 export VISUAL='nano'
 export EDITOR='nano'
