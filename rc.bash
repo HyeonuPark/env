@@ -31,6 +31,9 @@ function report-heavy-cmd {
 	fi
 	echo -n '' > "$COMMAND_EXEC_TIME_STATE"
 }
+function reset-time-state {
+	export COMMAND_EXEC_TIME_STATE="$(mktemp)"
+}
 
 export PS0="\$(echo -n \$SECONDS > \$COMMAND_EXEC_TIME_STATE)"
 export PS1="\$(report-heavy-cmd)$TERM_RED_BACKGROUND$ENVIRONMENT_TAG$TERM_RESET$TERM_CYAN\w $TERM_LIME\$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$TERM_YELLOW\$$TERM_RESET "
@@ -142,7 +145,7 @@ function ksh {
 
 # TODO: remove rg and exa deps on ad-hoc env, and remove bashism
 
-alias ls='exa --time-style=iso --git'
+alias ls='eza --time-style=iso --git'
 alias ll='ls -l'
 alias rmf='rm -rf'
 alias cpr='cp -r'
