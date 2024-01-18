@@ -29,7 +29,7 @@ swap caps lock and ctrl via gnome-tweaks
 
 `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
-`cargo install ripgrep exa cargo-expand cargo-outdated flamegraph`
+`cargo install ripgrep eza cargo-expand cargo-outdated flamegraph`
 
 vscode
 
