@@ -88,7 +88,7 @@ function git-current-branch {
 	git rev-parse --abbrev-ref HEAD 2> /dev/null
 }
 
-alias gfa='git fetch --all'; __git_complete gfa _git_fetch
+alias gfa='git fetch --all --jobs 40'; __git_complete gfa _git_fetch
 alias gps='gfa && git push origin $(git-current-branch)'; __git_complete gps _git_push
 alias gpsf='gps --force'; __git_complete gpsf _git_push
 alias gpl='gfa && git merge --ff-only origin/$(git-current-branch)'; __git_complete gpl _git_merge
