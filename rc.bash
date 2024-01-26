@@ -46,6 +46,8 @@ export PAGER='less'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 # print backtrace msg on rust executable panic
 export RUST_BACKTRACE=1
+# prvent "ding" sound on bash tab completions
+bind 'set bell-style none'
 
 TOOLS_BIN=(~/tools/*/bin)
 export PATH="\
@@ -151,6 +153,7 @@ alias rmf='rm -rf'
 alias cpr='cp -r'
 alias cl='clear'
 alias md='mkdir -p'
+alias ding='tput bel'
 
 function mf {
 	for file in $@; do
