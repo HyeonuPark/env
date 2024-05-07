@@ -90,11 +90,15 @@ function git-current-branch {
 	git rev-parse --abbrev-ref HEAD 2> /dev/null
 }
 
+function git-remote-branch {
+	git rev-parse --abbrev-ref @{u} 2> /dev/null
+}
+
 alias gfa='git fetch --all --jobs 40'; __git_complete gfa _git_fetch
 alias gps='gfa && git push origin $(git-current-branch)'; __git_complete gps _git_push
 alias gpsf='gps --force'; __git_complete gpsf _git_push
-alias gpl='gfa && git merge --ff-only origin/$(git-current-branch)'; __git_complete gpl _git_merge
-alias gplf='gfa && git reset --hard origin/$(git-current-branch)'; __git_complete gplf _git_reset
+alias gpl='gfa && git merge --ff-only $(git-remote-branch)'; __git_complete gpl _git_merge
+alias gplf='gfa && git reset --hard $(git-remote-branch)'; __git_complete gplf _git_reset
 
 alias gap='git add --patch'; __git_complete gap _git_add
 alias gb='git branch'; __git_complete gb _git_branch
@@ -116,7 +120,7 @@ alias grb='git rebase'; __git_complete grb _git_rebase
 alias grs='git reset'; __git_complete grs _git_reset
 
 alias gla="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) \- %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all --invert-grep --grep='\btw\b' --grep='^test$' --exclude=gh-pages"; __git_complete gla _git_log
-alias gl="gla -n 100"; __git_complete gl _git_log
+alias gl="gla -n 300"; __git_complete gl _git_log
 
 # Cargo aliases
 
