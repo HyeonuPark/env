@@ -116,6 +116,8 @@ alias gsp='git stash pop'; __git_complete gsp _git_stash
 alias gst='git status'; __git_complete gst _git_status
 alias gsh='git show'; __git_complete gsh _git_show
 
+alias gsu='git submodule update --init --recursive'; __git_complete gsu _git_submodule
+
 alias grb='git rebase'; __git_complete grb _git_rebase
 alias grs='git reset'; __git_complete grs _git_reset
 
