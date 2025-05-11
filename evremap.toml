@@ -1,0 +1,33 @@
+# wez/evremap config file
+
+device_name = "AT Translated Set 2 keyboard"
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]
+
+# Sometimes you need the caps lock
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_ESC"]
+output = ["KEY_CAPSLOCK"]
+
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_BACKSPACE"]
+output = ["KEY_DELETE"]
+
+[[remap]]
+input = ["KEY_LEFTALT", "KEY_UP"]
+output = ["KEY_PAGEUP"]
+
+[[remap]]
+input =	["KEY_LEFTALT", "KEY_DOWN"]
+output = ["KEY_PAGEDOWN"]
+
+[[remap]]
+input =	["KEY_LEFTALT", "KEY_LEFT"]
+output = ["KEY_HOME"]
+
+[[remap]]
+input =	["KEY_LEFTALT", "KEY_RIGHT"]
+output = ["KEY_END"]

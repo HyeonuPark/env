@@ -10,7 +10,6 @@
         "esbenp.prettier-vscode",
     ],
     "workbench.sideBar.location": "right",
-    "workbench.activityBar.visible": false,
     "files.autoSave": "onFocusChange",
     "keyboard.dispatch": "keyCode",
     "workbench.colorCustomizations": {
@@ -35,7 +34,7 @@
         "editor.insertSpaces": false,
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": "explicit"
         }
     },
     "[rust]": {
@@ -71,4 +70,5 @@
     "window.zoomLevel": 1,
     "window.menuBarVisibility": "hidden",
     "redhat.telemetry.enabled": true,
+    "workbench.activityBar.location": "hidden",
 }

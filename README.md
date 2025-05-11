@@ -23,9 +23,12 @@ AutomaticLoginEnable=true
 AutomaticLogin=hyeonu
 ```
 
-swap caps lock and ctrl via gnome-tweaks
+use evremap to remap keys
 
-`dnf install clang hexedit`
+- https://github.com/wez/evremap
+- https://github.com/zellij-org/zellij/issues/3742#issuecomment-2556772401
+
+`dnf install clang hexedit htop openssl-devel perl-devel`
 
 `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
